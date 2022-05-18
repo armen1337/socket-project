@@ -10,27 +10,26 @@ class BaseServer:
         self._port = port
         self._sock = None
     
-    def get_host(self):
+    def get_host(self) -> str:
         return self._host
     
-    def get_port(self):
+    def get_port(self) -> int:
         return self._port
 
     def _requires_sock(func):
+        """ Decorator for validating that a certain method requires self._sock variable to not be None """
         def wrapper(self, *args, **kwargs):
             if self._sock is None:
                 raise ConnectionRequiredException("Connection is required! Make sure you called the appropriate method before interaction.")
             func(self, *args, **kwargs)
 
         return wrapper
-    
-    def _initialize_socket(self):
-        if self._sock is None:
-            self._sock = socket.socket(config.ADDRESS_FAMILY, config.SOCKET_TYPE)
 
     def _socket_initializer(func):
+        """ Decorator for those methods which initialize self._sock variable before execution """
         def wrapper(self, *args, **kwargs):
-            self._initialize_socket()
+            if self._sock is None:
+                self._sock = socket.socket(config.ADDRESS_FAMILY, config.SOCKET_TYPE)
             func(self, *args, **kwargs)
 
         return wrapper
