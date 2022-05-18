@@ -1,0 +1,3 @@
+class ConnectionRequiredException(Exception):
+    pass
+
