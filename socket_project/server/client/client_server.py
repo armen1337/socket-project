@@ -1,5 +1,5 @@
-from utils import Logger
-from server.base_server import BaseServer
+from socket_project.utils import Logger
+from socket_project.server.base_server import BaseServer
 
 
 class Client(BaseServer):

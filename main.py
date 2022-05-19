@@ -1,6 +1,6 @@
-import config
+from socket_project import config
 
-from server.host import Host
+from socket_project.server.host import Host
 
 
 if __name__ == "__main__":

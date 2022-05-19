@@ -1,8 +1,8 @@
 import socket
 
-import config
-from utils import Logger
-from server.base_server import BaseServer
+from socket_project.http._file_handlers import FileHandler
+from socket_project.utils import Logger
+from socket_project.server.base_server import BaseServer
 
 
 class Host(BaseServer):
@@ -33,28 +33,7 @@ class Host(BaseServer):
 
     def _serve_files(self, msg: bytes):
         msg_utf8 = msg.decode('utf-8').split('\r\n')
-        print(msg_utf8)
-        header = 'HTTP/1.1 200 OK\n'
-        filename = msg_utf8[0].split(" ")[1].lstrip("/")
-        filename = filename if filename != '' else 'index.html'
+        Logger.info(msg_utf8[0])
+        file_response = FileHandler.render_files(msg_utf8)
 
-        try:
-            with open(config.FRONTENDS_FOLDER + filename, 'rb') as f:
-                response = f.read()
-        except FileNotFoundError:
-            with open(config.FRONTENDS_FOLDER + "index.html", 'rb') as f:
-                response = f.read()
-                print(response)
-
-        if filename.endswith(".jpg"):
-            mimetype = 'image/jpg'
-        elif filename.endswith(".css"):
-            mimetype = 'text/css'
-        elif filename.endswith(".js"):
-            mimetype = 'text/javascript'
-        else:
-            mimetype = 'text/html'
-
-        header += 'Content-Type: ' + str(mimetype) + '\n\n'
-
-        self._conn.sendall(header.encode() + response)
+        self._conn.sendall(file_response)

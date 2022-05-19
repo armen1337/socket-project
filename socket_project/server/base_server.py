@@ -1,7 +1,7 @@
 import socket
 
-import config
-from utils.exceptions import ConnectionRequiredException
+from socket_project import config
+from socket_project.utils.exceptions import ConnectionRequiredException
 
 
 class BaseServer:
