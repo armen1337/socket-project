@@ -1,6 +1,6 @@
 import socket
 
-from socket_project import config
+from socket_project import _config
 from socket_project.utils.exceptions import ConnectionRequiredException
 
 
@@ -29,7 +29,7 @@ class BaseServer:
         """ Decorator for those methods which initialize self._sock variable before execution """
         def wrapper(self, *args, **kwargs):
             if self._sock is None:
-                self._sock = socket.socket(config.ADDRESS_FAMILY, config.SOCKET_TYPE)
+                self._sock = socket.socket(_config.ADDRESS_FAMILY, _config.SOCKET_TYPE)
             func(self, *args, **kwargs)
 
         return wrapper

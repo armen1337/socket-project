@@ -5,3 +5,6 @@ __pycache__/
 */*/*/*/__pycache__/
 dist/
 build/
+src/frontends/
+src/*.py
+src/.idea
