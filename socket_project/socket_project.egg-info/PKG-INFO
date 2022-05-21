@@ -6,8 +6,9 @@ Home-page: https://github.com/armen1337/socket-project
 Download-URL: https://github.com/armen1337/socket-project/archive/refs/tags/v0.1-alpha.zip
 Author: armen1337
 Author-email: armen14102003@mail.ru
-License: UNKNOWN
-Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10.2
+Description-Content-Type: text/markdown
 
-UNKNOWN
-
+# Readme
