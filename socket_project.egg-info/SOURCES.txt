@@ -1,3 +1,5 @@
+README.md
+setup.cfg
 setup.py
 socket_project/__init__.py
 socket_project/test_connect.py
